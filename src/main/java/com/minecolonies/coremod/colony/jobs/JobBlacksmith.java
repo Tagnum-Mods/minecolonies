@@ -1,6 +1,7 @@
 package com.minecolonies.coremod.colony.jobs;
 
-import com.minecolonies.api.client.render.modeltype.BipedModelType;
+import com.minecolonies.api.client.render.modeltype.ModModelTypes;
+import com.minecolonies.api.client.render.modeltype.registry.ModelTypeEntry;
 import com.minecolonies.api.colony.ICitizenData;
 import com.minecolonies.api.colony.jobs.ModJobs;
 import com.minecolonies.api.colony.jobs.registry.JobEntry;
@@ -35,13 +36,6 @@ public class JobBlacksmith extends AbstractJobCrafter<EntityAIWorkBlacksmith, Jo
         return "com.minecolonies.coremod.job.Blacksmith";
     }
 
-    @NotNull
-    @Override
-    public BipedModelType getModel()
-    {
-        return BipedModelType.BLACKSMITH;
-    }
-
     /**
      * Generate your AI class to register.
      *
@@ -51,5 +45,12 @@ public class JobBlacksmith extends AbstractJobCrafter<EntityAIWorkBlacksmith, Jo
     public EntityAIWorkBlacksmith generateAI()
     {
         return new EntityAIWorkBlacksmith(this);
+    }
+
+    @NotNull
+    @Override
+    public ModelTypeEntry getModelType()
+    {
+        return ModModelTypes.blacksmith;
     }
 }

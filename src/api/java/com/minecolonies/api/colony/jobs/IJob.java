@@ -1,6 +1,6 @@
 package com.minecolonies.api.colony.jobs;
 
-import com.minecolonies.api.client.render.modeltype.IModelType;
+import com.minecolonies.api.client.render.modeltype.registry.ModelTypeEntry;
 import com.minecolonies.api.colony.ICitizenData;
 import com.minecolonies.api.colony.IColony;
 import com.minecolonies.api.colony.jobs.registry.JobEntry;
@@ -46,7 +46,7 @@ public interface IJob<AI extends Goal> extends INBTSerializable<CompoundNBT>
      *
      * @return Model of the citizen.
      */
-    IModelType getModel();
+    ModelTypeEntry getModelType();
 
     /**
      * Get the Colony that this Job is associated with (shortcut for getAssignedCitizen().getColonyByPosFromWorld()).
