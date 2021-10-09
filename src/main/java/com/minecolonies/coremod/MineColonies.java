@@ -1,11 +1,14 @@
 package com.minecolonies.coremod;
 
+import com.ldtteam.structurize.management.StructureName;
 import com.ldtteam.structurize.util.LanguageHandler;
 import com.ldtteam.structurize.util.StructureLoadingUtils;
+import com.minecolonies.api.IMinecoloniesAPI;
 import com.minecolonies.api.advancements.AdvancementTriggers;
 import com.minecolonies.api.blocks.ModBlocks;
 import com.minecolonies.api.colony.IChunkmanagerCapability;
 import com.minecolonies.api.colony.IColonyTagCapability;
+import com.minecolonies.api.colony.buildings.registry.BuildingEntry;
 import com.minecolonies.api.configuration.Configuration;
 import com.minecolonies.api.entity.ModEntities;
 import com.minecolonies.api.entity.citizen.AbstractEntityCitizen;
@@ -74,6 +77,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 @Mod(Constants.MOD_ID)
@@ -210,6 +214,11 @@ public class MineColonies
         Log.getLogger().warn("FMLLoadCompleteEvent");
         PlacementHandlerInitializer.initHandlers();
         RequestSystemInitializer.onPostInit();
+        IMinecoloniesAPI.getInstance().getBuildingRegistry().getValues().stream()
+                .map(BuildingEntry::getRegistryName)
+                .filter(Objects::nonNull)
+                .map(ResourceLocation::getPath)
+                .forEach(StructureName.HUTS::add);
     }
 
     /**
