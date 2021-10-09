@@ -203,7 +203,7 @@ public abstract class JobBasedRecipeCategory<T> implements IRecipeCategory<T>
         citizen.setFemale(citizen.getRandom().nextBoolean());
         citizen.setTextureId(citizen.getRandom().nextInt(255));
         citizen.getEntityData().set(EntityCitizen.DATA_TEXTURE_SUFFIX, CitizenData.SUFFIXES.get(citizen.getRandom().nextInt(CitizenData.SUFFIXES.size())));
-        citizen.setModelId(job.getModel());
+        citizen.setModelType(job.getModelType());
         return citizen;
     }
 

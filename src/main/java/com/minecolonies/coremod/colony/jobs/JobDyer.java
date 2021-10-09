@@ -1,7 +1,7 @@
 package com.minecolonies.coremod.colony.jobs;
 
-import com.minecolonies.api.client.render.modeltype.BipedModelType;
-import com.minecolonies.api.client.render.modeltype.IModelType;
+import com.minecolonies.api.client.render.modeltype.ModModelTypes;
+import com.minecolonies.api.client.render.modeltype.registry.ModelTypeEntry;
 import com.minecolonies.api.colony.ICitizenData;
 import com.minecolonies.api.colony.jobs.ModJobs;
 import com.minecolonies.api.colony.jobs.registry.JobEntry;
@@ -36,13 +36,6 @@ public class JobDyer extends AbstractJobCrafter<EntityAIWorkDyer, JobDyer>
         return "com.minecolonies.coremod.job.dyer";
     }
 
-    @NotNull
-    @Override
-    public IModelType getModel()
-    {
-        return BipedModelType.DYER;
-    }
-
     /**
      * Generate your AI class to register.
      *
@@ -53,5 +46,12 @@ public class JobDyer extends AbstractJobCrafter<EntityAIWorkDyer, JobDyer>
     public EntityAIWorkDyer generateAI()
     {
         return new EntityAIWorkDyer(this);
+    }
+
+    @NotNull
+    @Override
+    public ModelTypeEntry getModelType()
+    {
+        return ModModelTypes.dyer;
     }
 }

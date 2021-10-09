@@ -1,6 +1,6 @@
 package com.minecolonies.api;
 
-import com.minecolonies.api.client.render.modeltype.registry.IModelTypeRegistry;
+import com.minecolonies.api.client.render.modeltype.registry.ModelTypeEntry;
 import com.minecolonies.api.colony.ICitizenDataManager;
 import com.minecolonies.api.colony.IColonyManager;
 import com.minecolonies.api.colony.buildings.registry.BuildingEntry;
@@ -110,7 +110,7 @@ public final class MinecoloniesAPIProxy implements IMinecoloniesAPI
     }
 
     @Override
-    public IModelTypeRegistry getModelTypeRegistry()
+    public IForgeRegistry<ModelTypeEntry> getModelTypeRegistry()
     {
         return apiInstance.getModelTypeRegistry();
     }
