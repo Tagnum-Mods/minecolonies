@@ -1,7 +1,7 @@
 package com.minecolonies.apiimp;
 
 import com.minecolonies.api.IMinecoloniesAPI;
-import com.minecolonies.api.client.render.modeltype.registry.ModelTypeEntry;
+import com.minecolonies.api.client.render.modeltype.registry.IModelTypeRegistry;
 import com.minecolonies.api.colony.ICitizenDataManager;
 import com.minecolonies.api.colony.IColonyManager;
 import com.minecolonies.api.colony.buildings.registry.BuildingEntry;
@@ -63,7 +63,6 @@ public class CommonMinecoloniesAPIImpl implements IMinecoloniesAPI
     private        IForgeRegistry<ResearchRequirementEntry>                researchRequirementRegistry;
     private        IForgeRegistry<ResearchEffectEntry>                     researchEffectRegistry;
     private        IForgeRegistry<RecipeTypeEntry>                         recipeTypeEntryRegistry;
-    private        IForgeRegistry<ModelTypeEntry>                          modelTypeRegistry;
 
     @Override
     @NotNull
@@ -138,9 +137,9 @@ public class CommonMinecoloniesAPIImpl implements IMinecoloniesAPI
     }
 
     @Override
-    public IForgeRegistry<ModelTypeEntry> getModelTypeRegistry()
+    public IModelTypeRegistry getModelTypeRegistry()
     {
-        return modelTypeRegistry;
+        return null;
     }
 
     @Override
@@ -241,15 +240,6 @@ public class CommonMinecoloniesAPIImpl implements IMinecoloniesAPI
                                         .setDefaultKey(GLOBAL_EFFECT_ID)
                                         .disableSaving().allowModification().setType(ResearchEffectEntry.class)
                                         .setIDRange(0, Integer.MAX_VALUE - 1).create();
-
-        modelTypeRegistry = new RegistryBuilder<ModelTypeEntry>()
-                                        .setName(new ResourceLocation(Constants.MOD_ID, "model_types"))
-                                        .setDefaultKey(new ResourceLocation(Constants.MOD_ID, "null"))
-                                        .disableSaving()
-                                        .allowModification()
-                                        .setType(ModelTypeEntry.class)
-                                        .setIDRange(0, Integer.MAX_VALUE - 1)
-                                        .create();
     }
 
     @Override

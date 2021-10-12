@@ -4,7 +4,6 @@ import com.minecolonies.api.client.render.modeltype.CitizenModel;
 import com.minecolonies.api.entity.citizen.AbstractEntityCitizen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 import org.apache.commons.lang3.Validate;
 import org.jetbrains.annotations.NotNull;
 
@@ -12,9 +11,9 @@ import static com.minecolonies.api.entity.citizen.AbstractEntityCitizen.DATA_STY
 import static com.minecolonies.api.entity.citizen.AbstractEntityCitizen.DATA_TEXTURE_SUFFIX;
 
 /**
- * Entry for the ModelTypes registry
+ * Entry for the {@link IModelTypeRegistry} registry
  */
-public class ModelTypeEntry extends ForgeRegistryEntry<ModelTypeEntry>
+public class ModelTypeEntry
 {
     /**
      * Base folder for textures.
@@ -31,8 +30,8 @@ public class ModelTypeEntry extends ForgeRegistryEntry<ModelTypeEntry>
      */
     public static final class Builder
     {
-        private String                              _texturePath;
         private ResourceLocation                    registryName;
+        private String                              textureName;
         private int                                 textureCount;
         private ResourceLocation                    texturePath;
         private CitizenModel<AbstractEntityCitizen> maleModel;
@@ -67,7 +66,7 @@ public class ModelTypeEntry extends ForgeRegistryEntry<ModelTypeEntry>
         /**
          * Sets the texture name and amount of texture variations for the {@link ModelTypeEntry}.
          * <p>
-         * This functions assumes that your texture namespace is the same as the one you set in {@link #setRegistryName(String)}.
+         * This functions assumes that your texture namespace is the same as the one you set in {@link #setRegistryName(ResourceLocation)}.
          *
          * @param texturePath  The name of the texture.
          * @param textureCount The amount of texture variations this model has.
@@ -75,7 +74,7 @@ public class ModelTypeEntry extends ForgeRegistryEntry<ModelTypeEntry>
          */
         public Builder setModelTexture(final String texturePath, final int textureCount)
         {
-            this._texturePath = texturePath;
+            this.textureName = texturePath;
             this.textureCount = textureCount;
             return this;
         }
@@ -114,49 +113,35 @@ public class ModelTypeEntry extends ForgeRegistryEntry<ModelTypeEntry>
             Validate.notNull(registryName);
             if (texturePath == null)
             {
-                texturePath = new ResourceLocation(registryName.getNamespace(), _texturePath);
+                texturePath = new ResourceLocation(registryName.getNamespace(), textureName);
             }
             Validate.notNull(texturePath);
             Validate.isTrue(textureCount > 0);
             Validate.notNull(maleModel);
             Validate.notNull(femaleModel);
 
-            return new ModelTypeEntry(texturePath, textureCount, maleModel, femaleModel).setRegistryName(registryName);
+            return new ModelTypeEntry(registryName, texturePath, textureCount, maleModel, femaleModel);
         }
     }
 
+    private final ResourceLocation                    registryName;
     private final int                                 textureCount;
     private final ResourceLocation                    texturePath;
     private final CitizenModel<AbstractEntityCitizen> maleModel;
     private final CitizenModel<AbstractEntityCitizen> femaleModel;
 
-    private ModelTypeEntry(ResourceLocation texturePath, int textureCount, CitizenModel<AbstractEntityCitizen> maleModel, CitizenModel<AbstractEntityCitizen> femaleModel)
+    private ModelTypeEntry(
+      ResourceLocation registryName,
+      ResourceLocation texturePath,
+      int textureCount,
+      CitizenModel<AbstractEntityCitizen> maleModel,
+      CitizenModel<AbstractEntityCitizen> femaleModel)
     {
-        super();
+        this.registryName = registryName;
         this.texturePath = texturePath;
         this.textureCount = textureCount;
         this.maleModel = maleModel;
         this.femaleModel = femaleModel;
-    }
-
-    /**
-     * Gets the name of the texture and which mod the texture came from in a ResourceLocation.
-     *
-     * @return The modid and texture name in a ResourceLocation format.
-     */
-    public ResourceLocation getTexturePath()
-    {
-        return this.texturePath;
-    }
-
-    /**
-     * Gets the amount of texture variations availible for this model.
-     *
-     * @return The amount of texture variations.
-     */
-    public int getTextureCount()
-    {
-        return this.textureCount;
     }
 
     /**
@@ -208,6 +193,26 @@ public class ModelTypeEntry extends ForgeRegistryEntry<ModelTypeEntry>
         return new ResourceLocation(MOD_ID, BASE_FOLDER + DEFAULT_FOLDER + "/" + textureIdentifier + ".png");
     }
 
+    /**
+     * Gets the amount of texture variations availible for this model.
+     *
+     * @return The amount of texture variations.
+     */
+    public int getTextureCount()
+    {
+        return this.textureCount;
+    }
+
+    /**
+     * Gets the name of the texture and which mod the texture came from in a ResourceLocation.
+     *
+     * @return The modid and texture name in a ResourceLocation format.
+     */
+    public ResourceLocation getTexturePath()
+    {
+        return this.texturePath;
+    }
+
     @Override
     public String toString()
     {
@@ -217,5 +222,15 @@ public class ModelTypeEntry extends ForgeRegistryEntry<ModelTypeEntry>
             return regName.toString();
         }
         return super.toString();
+    }
+
+    /**
+     * Gets the registry name of the model type
+     *
+     * @return The registry name of the model type
+     */
+    public ResourceLocation getRegistryName()
+    {
+        return this.registryName;
     }
 }
