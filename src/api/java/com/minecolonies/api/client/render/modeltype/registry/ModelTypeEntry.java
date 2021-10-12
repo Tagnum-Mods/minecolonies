@@ -12,7 +12,7 @@ import static com.minecolonies.api.entity.citizen.AbstractEntityCitizen.DATA_STY
 import static com.minecolonies.api.entity.citizen.AbstractEntityCitizen.DATA_TEXTURE_SUFFIX;
 
 /**
- *
+ * Entry for the ModelTypes registry
  */
 public class ModelTypeEntry extends ForgeRegistryEntry<ModelTypeEntry>
 {
@@ -27,7 +27,7 @@ public class ModelTypeEntry extends ForgeRegistryEntry<ModelTypeEntry>
     public static final String DEFAULT_FOLDER = "default";
 
     /**
-     *
+     * Builder for a {@link ModelTypeEntry}
      */
     public static final class Builder
     {
@@ -39,8 +39,10 @@ public class ModelTypeEntry extends ForgeRegistryEntry<ModelTypeEntry>
         private CitizenModel<AbstractEntityCitizen> femaleModel;
 
         /**
-         * @param registryName
-         * @return
+         * Sets the registry name of the model.
+         *
+         * @param registryName The registry name.
+         * @return The builder.
          */
         public Builder setRegistryName(final ResourceLocation registryName)
         {
@@ -49,9 +51,11 @@ public class ModelTypeEntry extends ForgeRegistryEntry<ModelTypeEntry>
         }
 
         /**
-         * @param texturePath
-         * @param textureCount
-         * @return
+         * Sets the texture resource and amount of texture variations for the {@link ModelTypeEntry}.
+         *
+         * @param texturePath  The resource location of the texture.
+         * @param textureCount The amount of texture variations this model has.
+         * @return The builder.
          */
         public Builder setModelTexture(final ResourceLocation texturePath, final int textureCount)
         {
@@ -61,9 +65,13 @@ public class ModelTypeEntry extends ForgeRegistryEntry<ModelTypeEntry>
         }
 
         /**
-         * @param texturePath
-         * @param textureCount
-         * @return
+         * Sets the texture name and amount of texture variations for the {@link ModelTypeEntry}.
+         * <p>
+         * This functions assumes that your texture namespace is the same as the one you set in {@link #setRegistryName(String)}.
+         *
+         * @param texturePath  The name of the texture.
+         * @param textureCount The amount of texture variations this model has.
+         * @return The builder.
          */
         public Builder setModelTexture(final String texturePath, final int textureCount)
         {
@@ -73,8 +81,10 @@ public class ModelTypeEntry extends ForgeRegistryEntry<ModelTypeEntry>
         }
 
         /**
-         * @param maleModel
-         * @return
+         * Sets the model to be used by males in the {@link ModelTypeEntry}.
+         *
+         * @param maleModel The male model to be used for rendering.
+         * @return The builder.
          */
         public Builder setMaleModel(final CitizenModel<AbstractEntityCitizen> maleModel)
         {
@@ -82,6 +92,12 @@ public class ModelTypeEntry extends ForgeRegistryEntry<ModelTypeEntry>
             return this;
         }
 
+        /**
+         * Sets the model to be used by females in the {@link ModelTypeEntry}
+         *
+         * @param femaleModel The female model to be used for rendering.
+         * @return The builder.
+         */
         public Builder setFemaleModel(final CitizenModel<AbstractEntityCitizen> femaleModel)
         {
             this.femaleModel = femaleModel;
@@ -89,7 +105,9 @@ public class ModelTypeEntry extends ForgeRegistryEntry<ModelTypeEntry>
         }
 
         /**
-         * @return
+         * Creates a new {@link ModelTypeEntry}.
+         *
+         * @return The created {@link ModelTypeEntry}
          */
         public ModelTypeEntry build()
         {
@@ -112,12 +130,6 @@ public class ModelTypeEntry extends ForgeRegistryEntry<ModelTypeEntry>
     private final CitizenModel<AbstractEntityCitizen> maleModel;
     private final CitizenModel<AbstractEntityCitizen> femaleModel;
 
-    /**
-     * @param texturePath
-     * @param textureCount
-     * @param maleModel
-     * @param femaleModel
-     */
     private ModelTypeEntry(ResourceLocation texturePath, int textureCount, CitizenModel<AbstractEntityCitizen> maleModel, CitizenModel<AbstractEntityCitizen> femaleModel)
     {
         super();
@@ -144,7 +156,9 @@ public class ModelTypeEntry extends ForgeRegistryEntry<ModelTypeEntry>
     }
 
     /**
-     * @return
+     * Get the male model for this {@link ModelTypeEntry}.
+     *
+     * @return The male model to be used
      */
     public CitizenModel<AbstractEntityCitizen> getMaleModel()
     {
@@ -152,18 +166,26 @@ public class ModelTypeEntry extends ForgeRegistryEntry<ModelTypeEntry>
     }
 
     /**
-     * @return
+     * Get the female model for this {@link ModelTypeEntry}.
+     *
+     * @return The female model to be used
      */
     public CitizenModel<AbstractEntityCitizen> getFemaleModel()
     {
         return femaleModel;
     }
 
+    /**
+     * Gets the resource location of the texture required for the {@link AbstractEntityCitizen} to be rendered with.
+     *
+     * @param entityCitizen The citizen that will be rendered.
+     * @return The texture for the model.
+     */
     public ResourceLocation getTexture(@NotNull final AbstractEntityCitizen entityCitizen)
     {
-        final int moddedTextureId = (entityCitizen.getTextureId() % textureCount) + 1;
-        final String MOD_ID = texturePath.getNamespace();
-        final String textureName = texturePath.getPath();
+        final int moddedTextureId = (entityCitizen.getTextureId() % getTextureCount()) + 1;
+        final String MOD_ID = getTexturePath().getNamespace();
+        final String textureName = getTexturePath().getPath();
 
         // Texture Identifier: {textureName}{gender}{texture_id}{render_matadata}{render_metadata_suffix}
         final String textureIdentifier =
