@@ -140,7 +140,9 @@ public class ModelTypeEntry extends ForgeRegistryEntry<ModelTypeEntry>
     }
 
     /**
-     * @return
+     * Gets the name of the texture and which mod the texture came from in a ResourceLocation.
+     *
+     * @return The modid and texture name in a ResourceLocation format.
      */
     public ResourceLocation getTexturePath()
     {
@@ -148,7 +150,9 @@ public class ModelTypeEntry extends ForgeRegistryEntry<ModelTypeEntry>
     }
 
     /**
-     * @return
+     * Gets the amount of texture variations availible for this model.
+     *
+     * @return The amount of texture variations.
      */
     public int getTextureCount()
     {
