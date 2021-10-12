@@ -1,7 +1,6 @@
 package com.minecolonies.coremod.proxy;
 
 import com.minecolonies.api.MinecoloniesAPIProxy;
-import com.minecolonies.api.client.render.modeltype.registry.ModelTypeEntry;
 import com.minecolonies.api.colony.ICitizenDataView;
 import com.minecolonies.api.colony.IColonyView;
 import com.minecolonies.api.colony.buildings.registry.BuildingEntry;
@@ -148,12 +147,6 @@ public abstract class CommonProxy implements IProxy
     public static void registerJobTypes(final RegistryEvent.Register<JobEntry> event)
     {
         ModJobsInitializer.init(event);
-    }
-
-    @SubscribeEvent
-    public static void registerModelTypes(final RegistryEvent.Register<ModelTypeEntry> event)
-    {
-        ModModelTypesInitializer.init(event);
     }
 
     @SubscribeEvent

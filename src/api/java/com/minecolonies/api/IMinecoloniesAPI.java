@@ -1,6 +1,6 @@
 package com.minecolonies.api;
 
-import com.minecolonies.api.client.render.modeltype.registry.ModelTypeEntry;
+import com.minecolonies.api.client.render.modeltype.registry.IModelTypeRegistry;
 import com.minecolonies.api.colony.ICitizenDataManager;
 import com.minecolonies.api.colony.IColonyManager;
 import com.minecolonies.api.colony.buildings.registry.BuildingEntry;
@@ -53,6 +53,8 @@ public interface IMinecoloniesAPI
 
     IForgeRegistry<GuardType> getGuardTypeRegistry();
 
+    IModelTypeRegistry getModelTypeRegistry();
+
     Configuration getConfig();
 
     IFurnaceRecipes getFurnaceRecipes();
@@ -70,6 +72,4 @@ public interface IMinecoloniesAPI
     IForgeRegistry<ColonyEventDescriptionTypeRegistryEntry> getColonyEventDescriptionRegistry();
 
     IForgeRegistry<RecipeTypeEntry> getRecipeTypeRegistry();
-
-    IForgeRegistry<ModelTypeEntry> getModelTypeRegistry();
 }

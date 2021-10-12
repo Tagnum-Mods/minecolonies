@@ -42,6 +42,8 @@ public class ModModelTypes
     public static final ResourceLocation CONCRETE_MIXER_ID = rl("concrete_mixer");
     public static final ResourceLocation BEEKEEPER_ID      = rl("beekeeper");
 
+    public static ModelTypeEntry settler;
+    public static ModelTypeEntry citizen;
     public static ModelTypeEntry noble;
     public static ModelTypeEntry aristocrat;
     public static ModelTypeEntry builder;
@@ -75,10 +77,8 @@ public class ModModelTypes
     public static ModelTypeEntry rabbit_herder;
     public static ModelTypeEntry concrete_mixer;
     public static ModelTypeEntry beekeeper;
-    public static ModelTypeEntry settler;
-    public static ModelTypeEntry citizen;
 
-    private static ResourceLocation rl(String name)
+    private static ResourceLocation rl(final String name)
     {
         return new ResourceLocation(Constants.MOD_ID, name);
     }

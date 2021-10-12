@@ -2,10 +2,9 @@ package com.minecolonies.apiimp.initializer;
 
 import com.minecolonies.api.client.render.modeltype.CitizenModel;
 import com.minecolonies.api.client.render.modeltype.ModModelTypes;
+import com.minecolonies.api.client.render.modeltype.registry.IModelTypeRegistry;
 import com.minecolonies.api.client.render.modeltype.registry.ModelTypeEntry;
 import com.minecolonies.coremod.client.model.*;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.registries.IForgeRegistry;
 
 public final class ModModelTypesInitializer
 {
@@ -14,9 +13,9 @@ public final class ModModelTypesInitializer
         throw new IllegalStateException("Tried to initialize: ModModelTypesInitializer but this is a Utility class.");
     }
 
-    public static void init(final RegistryEvent.Register<ModelTypeEntry> event)
+    public static void init()
     {
-        final IForgeRegistry<ModelTypeEntry> reg = event.getRegistry();
+        final IModelTypeRegistry reg = IModelTypeRegistry.getInstance();
 
         ModModelTypes.settler = new ModelTypeEntry.Builder()
           .setRegistryName(ModModelTypes.SETTLER_ID)
