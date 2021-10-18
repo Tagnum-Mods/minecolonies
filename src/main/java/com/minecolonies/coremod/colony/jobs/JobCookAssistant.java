@@ -1,12 +1,11 @@
 package com.minecolonies.coremod.colony.jobs;
 
-import com.minecolonies.api.client.render.modeltype.BipedModelType;
-import com.minecolonies.api.client.render.modeltype.IModelType;
+import com.minecolonies.api.client.render.modeltype.ModModelTypes;
+import com.minecolonies.api.client.render.modeltype.registry.ModelTypeEntry;
 import com.minecolonies.api.colony.ICitizenData;
 import com.minecolonies.api.colony.jobs.ModJobs;
 import com.minecolonies.api.colony.jobs.registry.JobEntry;
 import com.minecolonies.coremod.entity.ai.citizen.cook.EntityAIWorkCookAssistant;
-
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -37,13 +36,6 @@ public class JobCookAssistant extends AbstractJobCrafter<EntityAIWorkCookAssista
         return "com.minecolonies.coremod.job.cookassistant";
     }
 
-    @NotNull
-    @Override
-    public IModelType getModel()
-    {
-        return BipedModelType.COOK;
-    }
-
     /**
      * Generate your AI class to register.
      *
@@ -54,5 +46,12 @@ public class JobCookAssistant extends AbstractJobCrafter<EntityAIWorkCookAssista
     public EntityAIWorkCookAssistant generateAI()
     {
         return new EntityAIWorkCookAssistant(this);
+    }
+
+    @NotNull
+    @Override
+    public ModelTypeEntry getModelType()
+    {
+        return ModModelTypes.cook;
     }
 }

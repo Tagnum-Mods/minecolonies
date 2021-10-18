@@ -1,6 +1,7 @@
 package com.minecolonies.coremod.colony.jobs;
 
-import com.minecolonies.api.client.render.modeltype.BipedModelType;
+import com.minecolonies.api.client.render.modeltype.ModModelTypes;
+import com.minecolonies.api.client.render.modeltype.registry.ModelTypeEntry;
 import com.minecolonies.api.colony.ICitizenData;
 import com.minecolonies.api.colony.jobs.ModJobs;
 import com.minecolonies.api.colony.jobs.registry.JobEntry;
@@ -35,13 +36,6 @@ public class JobTeacher extends AbstractJob<EntityAIWorkTeacher, JobTeacher>
         return "com.minecolonies.coremod.job.teacher";
     }
 
-    @NotNull
-    @Override
-    public BipedModelType getModel()
-    {
-        return BipedModelType.TEACHER;
-    }
-
     /**
      * Override to add Job-specific AI tasks to the given EntityAITask list.
      */
@@ -50,5 +44,12 @@ public class JobTeacher extends AbstractJob<EntityAIWorkTeacher, JobTeacher>
     public EntityAIWorkTeacher generateAI()
     {
         return new EntityAIWorkTeacher(this);
+    }
+
+    @NotNull
+    @Override
+    public ModelTypeEntry getModelType()
+    {
+        return ModModelTypes.teacher;
     }
 }

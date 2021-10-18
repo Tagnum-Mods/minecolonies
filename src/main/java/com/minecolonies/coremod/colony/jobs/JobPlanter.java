@@ -1,6 +1,7 @@
 package com.minecolonies.coremod.colony.jobs;
 
-import com.minecolonies.api.client.render.modeltype.BipedModelType;
+import com.minecolonies.api.client.render.modeltype.ModModelTypes;
+import com.minecolonies.api.client.render.modeltype.registry.ModelTypeEntry;
 import com.minecolonies.api.colony.ICitizenData;
 import com.minecolonies.api.colony.jobs.ModJobs;
 import com.minecolonies.api.colony.jobs.registry.JobEntry;
@@ -36,13 +37,6 @@ public class JobPlanter extends AbstractJobCrafter<EntityAIWorkPlanter, JobPlant
         return "com.minecolonies.coremod.job.planter";
     }
 
-    @NotNull
-    @Override
-    public BipedModelType getModel()
-    {
-        return BipedModelType.PLANTER;
-    }
-
     /**
      * Generate your AI class to register.
      *
@@ -53,6 +47,13 @@ public class JobPlanter extends AbstractJobCrafter<EntityAIWorkPlanter, JobPlant
     public EntityAIWorkPlanter generateAI()
     {
         return new EntityAIWorkPlanter(this);
+    }
+
+    @NotNull
+    @Override
+    public ModelTypeEntry getModelType()
+    {
+        return ModModelTypes.planter;
     }
 
     @Override

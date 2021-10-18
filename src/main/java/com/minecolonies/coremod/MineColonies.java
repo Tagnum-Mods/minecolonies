@@ -17,6 +17,7 @@ import com.minecolonies.api.tileentities.MinecoloniesTileEntities;
 import com.minecolonies.api.util.Log;
 import com.minecolonies.api.util.constant.Constants;
 import com.minecolonies.apiimp.initializer.InteractionValidatorInitializer;
+import com.minecolonies.apiimp.initializer.ModModelTypesInitializer;
 import com.minecolonies.coremod.client.render.*;
 import com.minecolonies.coremod.client.render.mobs.RenderMercenary;
 import com.minecolonies.coremod.client.render.mobs.amazon.RendererAmazon;
@@ -231,6 +232,8 @@ public class MineColonies
     @SubscribeEvent
     public static void doClientStuff(final FMLClientSetupEvent event)
     {
+        ModModelTypesInitializer.init();
+
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.CITIZEN, RenderBipedCitizen::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.VISITOR, RenderBipedCitizen::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.FISHHOOK, RenderFishHook::new);

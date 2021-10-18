@@ -1,6 +1,7 @@
 package com.minecolonies.coremod.colony.jobs;
 
-import com.minecolonies.api.client.render.modeltype.BipedModelType;
+import com.minecolonies.api.client.render.modeltype.ModModelTypes;
+import com.minecolonies.api.client.render.modeltype.registry.ModelTypeEntry;
 import com.minecolonies.api.colony.ICitizenData;
 import com.minecolonies.api.colony.jobs.ModJobs;
 import com.minecolonies.api.colony.jobs.registry.JobEntry;
@@ -39,9 +40,9 @@ public class JobComposter extends AbstractJob<EntityAIWorkComposter, JobComposte
      */
     @NotNull
     @Override
-    public BipedModelType getModel()
+    public ModelTypeEntry getModelType()
     {
-        return BipedModelType.COMPOSTER;
+        return ModModelTypes.composter;
     }
 
     @Override
