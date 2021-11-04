@@ -2,6 +2,7 @@ package com.minecolonies.coremod.colony.jobs;
 
 import com.google.common.collect.ImmutableList;
 import com.minecolonies.api.client.render.modeltype.BipedModelType;
+import com.minecolonies.api.client.render.modeltype.ModModelTypes;
 import com.minecolonies.api.colony.ICitizenData;
 import com.minecolonies.api.colony.buildings.workerbuildings.IWareHouse;
 import com.minecolonies.api.colony.jobs.ModJobs;
@@ -115,7 +116,7 @@ public class JobDeliveryman extends AbstractJob<EntityAIWorkDeliveryman, JobDeli
     @Override
     public BipedModelType getModel()
     {
-        return BipedModelType.DELIVERYMAN;
+        return ModModelTypes.deliveryman;
     }
 
     @Override

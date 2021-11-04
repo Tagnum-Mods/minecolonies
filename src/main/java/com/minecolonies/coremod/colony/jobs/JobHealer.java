@@ -1,6 +1,7 @@
 package com.minecolonies.coremod.colony.jobs;
 
 import com.minecolonies.api.client.render.modeltype.BipedModelType;
+import com.minecolonies.api.client.render.modeltype.ModModelTypes;
 import com.minecolonies.api.colony.ICitizenData;
 import com.minecolonies.api.colony.jobs.ModJobs;
 import com.minecolonies.api.colony.jobs.registry.JobEntry;
@@ -60,7 +61,7 @@ public class JobHealer extends AbstractJob<EntityAIWorkHealer, JobHealer>
     @Override
     public BipedModelType getModel()
     {
-        return BipedModelType.HEALER;
+        return ModModelTypes.healer;
     }
 
     /**
